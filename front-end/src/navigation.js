@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/common/header';
 
+const Register = React.lazy(() => import('./components/pages/user/register'));
+const Login = React.lazy(() => import('./components/pages/user/login'));
 
 const Navigation = () => {
   return (

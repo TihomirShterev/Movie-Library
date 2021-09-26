@@ -35,9 +35,8 @@ module.exports = {
 
     try {
       const foundUser = await User.findOne({ email });
-      const matchedPassword = await foundUser.matchPassword(password);
 
-      if (foundUser && matchedPassword) {
+      if (foundUser && (await foundUser.matchPassword(password))) {
         const { _id, email } = foundUser;
         res.json({
           _id,
