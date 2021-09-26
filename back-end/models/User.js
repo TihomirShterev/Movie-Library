@@ -9,9 +9,9 @@ const userSchema = mongoose.Schema(
       unique: true,
       validate: {
         validator: function (v) {
-          return /^[\w.]+@[a-z]+\.[a-z]+$/g.test(v);
+          return /^[\w.]{5,}@[a-z]{3,}\.[a-z]{2,}$/g.test(v);
         },
-        message: props => `${props.value} should be valid!`
+        message: props => `${props.value} should be valid`
       }
     },
     password: {
@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema(
         validator: function (v) {
           return /^\S+$/g.test(v);
         },
-        message: props => `${props.value} should not contain whitespace characters!`
+        message: props => `${props.value} should not contain whitespace characters`
       }
     }
   }
