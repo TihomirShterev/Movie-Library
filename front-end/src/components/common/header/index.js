@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../../redux/actions/userActions';
 import SearchBar from '../searchBar';
 import styles from './index.module.css';
 
 const Header = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector(state => state.login);
 
-  const logout = () => {
-    localStorage.removeItem('userInfo');
-    history.push('/');
-  };
+  const handleLogout = () => dispatch(logout());
 
   return (
     <header>
@@ -17,10 +17,10 @@ const Header = () => {
         <ul className={styles.authentication}>
           <li><Link to="/">My Movie Collection</Link></li>
           {
-            localStorage.getItem('userInfo')
+            userInfo
               ? <>
-                <li><Link to="/">Hello, user@gmail.com</Link></li>
-                <li><Link to="/" onClick={logout}>Logout</Link></li>
+                <li><Link to="/">Hi, {userInfo.email}</Link></li>
+                <li><a href="/" onClick={handleLogout}>Logout</a></li>
               </>
               : <>
                 <li><Link to="/login">Login</Link></li>

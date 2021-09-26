@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import Navigation from './navigation';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navigation />
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

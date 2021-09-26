@@ -22,7 +22,9 @@
 }
 
 .login p, 
-.register p {
+.register p,
+.login div, 
+.register div {
   display: flex;
   margin: 4%;
 }
