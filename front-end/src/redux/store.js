@@ -8,7 +8,8 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
   : null;
 
 const initialState = {
-  login: { userInfo: userInfoFromStorage }
+  login: { userInfo: userInfoFromStorage },
+  searchByTitle: []
 };
 
 const store = createStore(

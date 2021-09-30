@@ -5,7 +5,8 @@ const ActionTypes = {
   LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAIL: 'LOGIN_FAIL',
-  LOGOUT: 'LOGOUT'
+  LOGOUT: 'LOGOUT',
+  SEARCH_BY_TITLE: 'SEARCH_BY_TITLE'
 };
 
 export default ActionTypes;
