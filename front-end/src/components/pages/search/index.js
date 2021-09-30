@@ -34,7 +34,9 @@ const Search = () => {
           Start searching for a movie.
         </p>
       )}
-
+      {movies.length === 0 && (
+        <img src="https://i.ibb.co/TtRbRP3/movie.jpg" alt="background-img" width={'100%'} />
+      )}
     </div>
   );
 };
