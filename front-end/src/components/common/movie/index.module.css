@@ -28,7 +28,7 @@
 }
 
 .movie-info p:nth-child(3) {
-  max-height: 100px;
+  font-size: 0.9em;
 }
 
 .add-btn,
