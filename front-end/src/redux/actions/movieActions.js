@@ -1,14 +1,24 @@
 import axios from 'axios';
-import { apiKey, searchURL } from '../../config/config';
+import { apiKey, detailsPath, searchPath, tmdbURL } from '../../config/config';
 import ActionTypes from '../constants/actionTypes';
 
-const { SEARCH_BY_TITLE: SEARCH_MOVIE } = ActionTypes;
+const { SEARCH_BY_TITLE, SEARCH_BY_ID } = ActionTypes;
 
-export const searchByTitle = movieTitle => async dispatch => {
+export const searchByTitle = title => async dispatch => {
   try {
-    const res = await axios.get(`${searchURL}?api_key=${apiKey}&query=${movieTitle}`);
+    const res = await axios.get(`${tmdbURL}${searchPath}?api_key=${apiKey}&query=${title}`);
     const { data: { results } } = await res;
-    dispatch({ type: SEARCH_MOVIE, payload: results });
+    dispatch({ type: SEARCH_BY_TITLE, payload: results });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const searchById = id => async dispatch => {
+  try {
+    const res = await axios.get(`${tmdbURL}${detailsPath}/${id}?api_key=${apiKey}`);
+    const { data } = await res;
+    dispatch({ type: SEARCH_BY_ID, payload: data });
   } catch (err) {
     console.log(err);
   }

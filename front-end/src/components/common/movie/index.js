@@ -5,11 +5,20 @@ import { movieGenres } from '../../../utils/constants';
 import styles from './index.module.css';
 
 const Movie = ({ movie }) => {
-  const { id, title, release_date, poster_path, genre_ids, overview } = movie;
+  const { id, title, release_date, poster_path, genre_ids, genres, runtime, overview, homepage } = movie;
+  const releaseDate = release_date.substring(0, 4);
+  let genresStr;
+
+  if (genre_ids) {
+    genresStr = genre_ids.map(genreId => movieGenres[genreId]).join(', ');
+  } else {
+    genresStr = genres.map(genre => genre.name).join(', ');
+  }
+
   return (
-    <li key={id} className={styles["movie-item"]}>
+    <div className={styles["movie-item"]}>
       <article className={styles["movie-poster-container"]}>
-        <Link to={`/search/${id}`}>
+        <Link to={`/movie/${id}`}>
           <img src={poster_path
             ? `${imageURL}/${poster_path}`
             : "https://i.ibb.co/m9gBwhk/image-not-found.png"
@@ -17,14 +26,14 @@ const Movie = ({ movie }) => {
         </Link>
       </article>
       <article className={styles["movie-info"]}>
-        <Link to={`/search/${id}`}><h1>{title} ({release_date.substring(0, 4)})</h1></Link>
-        <p>{genre_ids.map(genreId => movieGenres[genreId]).join(', ')}</p>
+        <Link to={`/movie/${id}`}><h1>{title} ({releaseDate})</h1></Link>
+        <p>{genresStr}{runtime && ` | ${runtime} minutes`}</p>
         <p>{overview}</p>
-        <Link to={`/search/${id}`}>Visit official site</Link>
+        {homepage && <a href={homepage}>Visit official site</a>}
         <button className={styles["add-btn"]}>Add To Favorites</button>
         {/* <button className={styles["remove-btn"]}>Remove From Favorites</button> */}
       </article>
-    </li>
+    </div>
   );
 };
 

@@ -5,6 +5,7 @@ import Header from './components/common/header';
 const Register = React.lazy(() => import('./components/pages/user/register'));
 const Login = React.lazy(() => import('./components/pages/user/login'));
 const Search = React.lazy(() => import('./components/pages/search'));
+const MovieDetails = React.lazy(() => import('./components/pages/movieDetails'));
 
 const Navigation = () => {
   return (
@@ -15,6 +16,7 @@ const Navigation = () => {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/search/:movieTitle?" component={Search} />
+          <Route path="/movie/:movieId?" component={MovieDetails} />
         </Switch>
       </Suspense>
     </BrowserRouter>

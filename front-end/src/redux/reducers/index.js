@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
 import { registerReducer, loginReducer } from './userReducers';
-import { searchByTitleReducer } from './movieReducers';
+import { searchByIdReducer, searchByTitleReducer } from './movieReducers';
 
 const reducers = combineReducers({
   register: registerReducer,
   login: loginReducer,
-  searchByTitle: searchByTitleReducer
+  searchByTitle: searchByTitleReducer,
+  searchById: searchByIdReducer
 });
 
 export default reducers;
