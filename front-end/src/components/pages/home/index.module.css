@@ -1,4 +1,4 @@
-.home {
+.home-page {
   display: flex;
   flex-direction: column;
 }
@@ -42,24 +42,17 @@
   background: transparent;
 }
 
-.favorites h1 {
+.home-page h1 {
   text-align: center;
 }
 
-.favorites ul {
-  list-style: none;
+.favorites-section h1 {
+  text-align: center;
+}
+
+.favorites-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 0 100px 100px;
-  padding: 0;
-}
-
-/* hardcoded data */
-.favorites ul li {
-  width: 200px;
-  height: 300px;
-  margin: 20px;
-  background: darkgray;
 }

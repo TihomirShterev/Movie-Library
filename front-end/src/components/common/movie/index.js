@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import { imageURL } from '../../../config/config';
 import { addToFavorites, removeFromFavorites } from '../../../redux/actions/movieActions';
 import { movieGenres } from '../../../utils/constants';
@@ -9,9 +9,11 @@ import styles from './index.module.css';
 const Movie = ({ movie }) => {
   const userId = useSelector(state => state.login.userInfo?._id);
   const favorites = useSelector(state => state.favorites);
-  const history = useHistory();
-  const isFavorite = favorites.some(f => f.id === movie.id);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { path } = useRouteMatch();
+  const homeView = path === '/';
+  const isFavorite = favorites.some(f => f.id === movie.id);
   const { id, title, release_date, poster_path, genre_ids, genres, runtime, overview, homepage } = movie;
   const releaseDate = release_date.substring(0, 4);
   let genresStr;
@@ -45,17 +47,19 @@ const Movie = ({ movie }) => {
           } alt="moviePosterURL" width={220} />
         </Link>
       </article>
-      <article className={styles["movie-info"]}>
-        <Link to={`/movie/${id}`}><h1>{title} ({releaseDate})</h1></Link>
-        <p>{genresStr}{runtime && ` | ${runtime} minutes`}</p>
-        <p>{overview}</p>
-        {homepage && <a href={homepage}>Visit official site</a>}
-        {isFavorite ? (
-          <button className={styles["remove-btn"]} onClick={handleClick}>Remove From Favorites</button>
-        ) : (
-          <button className={styles["add-btn"]} onClick={handleClick}>Add To Favorites</button>
-        )}
-      </article>
+      {!homeView && (
+        <article className={styles["movie-info"]}>
+          <Link to={`/movie/${id}`}><h1>{title} ({releaseDate})</h1></Link>
+          <p>{genresStr}{runtime && ` | ${runtime} minutes`}</p>
+          <p>{overview}</p>
+          {homepage && <a href={homepage}>Visit official site</a>}
+          {isFavorite ? (
+            <button className={styles["remove-btn"]} onClick={handleClick}>Remove From Favorites</button>
+          ) : (
+            <button className={styles["add-btn"]} onClick={handleClick}>Add To Favorites</button>
+          )}
+        </article>
+      )}
     </div>
   );
 };

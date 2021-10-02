@@ -17,7 +17,7 @@ const Home = () => {
   }, [dispatch, userId]);
 
   return (
-    <div className={styles.home}>
+    <main className={styles["home-page"]}>
       <section className={styles.intro}>
         <h1>Welcome!</h1>
         <p>This library can be used as a great source for movie content. It is designed
@@ -25,27 +25,19 @@ const Home = () => {
           Please feel free to browse, add to favorites and review the listed movies. </p>
         <Link to="/search">Search</Link>
       </section>
-      <section className={styles["favorites-section"]}>
-        {favorites.length > 0 && favorites.map(favorite => {
-          return <Movie key={favorite.id} movie={favorite} />;
-        })}
-        {/* {movieTitle && favoriteList.length > 0 && favoriteList.map(favorite => {
-          return <Movie key={movie.id} movie={favorite} />;
-        })}
-        {movieTitle && favoriteList.length === 0 ? (
-          <p style={{ color: 'red' }}>
-            No results found. Please try again with a different title.
-          </p>
-        ) : (
-          <p style={{ color: 'green' }}>
-            Start searching for a movie.
-          </p>
-        )}
-        {favoriteList.length === 0 && (
-          <img src="https://i.ibb.co/TtRbRP3/movie.jpg" alt="background-img" width={'100%'} />
-        )} */}
-      </section>
-    </div>
+      <h1>Your Favorites</h1>
+      {favorites.length > 0 ? (
+        <section className={styles["favorites-section"]}>
+          {favorites.map(favorite => {
+            return <Movie key={favorite.id} movie={favorite} />;
+          })}
+        </section>
+      ) : (
+        <p style={{ color: 'blue', textAlign: 'center' }}>
+          If you add any movies to favorites, they would be displayed here.
+        </p>
+      )}
+    </main>
   );
 };
 
