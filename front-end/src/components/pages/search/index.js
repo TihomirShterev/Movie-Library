@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchByTitle } from '../../../redux/actions/movieActions';
+import { listFavorites, searchByTitle } from '../../../redux/actions/movieActions';
 import Movie from '../../common/movie';
 import SearchBar from '../../common/searchBar';
 import styles from './index.module.css';
@@ -10,10 +10,17 @@ const Search = () => {
   const { movieTitle } = useParams();
   const dispatch = useDispatch();
   const movies = useSelector(state => state.searchByTitle);
+  const userId = useSelector(state => state.login.userInfo?._id);
 
   useEffect(() => {
     dispatch(searchByTitle(movieTitle));
   }, [dispatch, movieTitle]);
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(listFavorites(userId));
+    }
+  }, [dispatch, userId]);
 
   return (
     <main className={styles["search-page"]}>
