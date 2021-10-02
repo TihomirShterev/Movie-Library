@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { appURL } from '../../config/config';
 import ActionTypes from '../constants/actionTypes';
 
 const {
@@ -22,7 +23,7 @@ export const register = (email, password) => async dispatch => {
     };
 
     const { data } = await axios.post(
-      'http://localhost:3001/api/users/register',
+      `${appURL}/users/register`,
       { email, password },
       config
     );
@@ -52,7 +53,7 @@ export const login = (email, password) => async dispatch => {
     };
 
     const { data } = await axios.post(
-      'http://localhost:3001/api/users/login',
+      `${appURL}/users/login`,
       { email, password },
       config
     );

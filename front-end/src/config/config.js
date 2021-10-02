@@ -1,3 +1,4 @@
+export const appURL = 'http://localhost:3001/api';
 export const tmdbURL = 'https://api.themoviedb.org/3';
 export const searchPath = '/search/movie';
 export const detailsPath = '/movie';
