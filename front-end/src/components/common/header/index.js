@@ -15,10 +15,10 @@ const Header = () => {
     <header>
       <nav className={styles["nav-bar"]}>
         <ul className={styles.authentication}>
-          <li><Link to="/">My Movie Collection</Link></li>
           {
             userInfo
               ? <>
+                <li><Link to="/">My Movie Collection</Link></li>
                 <li><Link to="/">Hi, {userInfo.email}</Link></li>
                 <li><a href="/" onClick={handleLogout}>Logout</a></li>
               </>
