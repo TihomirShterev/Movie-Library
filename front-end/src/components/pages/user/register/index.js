@@ -4,8 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { register } from '../../../../redux/actions/userActions';
 import styles from '../index.module.css';
 
-const EMAIL_PATTERN = /^[\w.]{5,}@[a-z]{3,}\.[a-z]{2,}$/g;
-const PASSWORD_PATTERN = /^\S{6,}$/g;
+const EMAIL_PATTERN = /^[\w.]{5,}@[a-z]{3,}\.[a-z]{2,}$/;
+const PASSWORD_PATTERN = /^\S{6,}$/;
 const PASSWORD_MIN_LENGTH = 6;
 
 const Register = () => {
