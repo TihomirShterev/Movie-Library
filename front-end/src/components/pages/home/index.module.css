@@ -1,0 +1,65 @@
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 580px;
+  padding-left: 600px;
+  background-image: url("../../../assets/movie.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.intro h1 {
+  margin-bottom: 0;
+}
+
+.intro p {
+  width: 800px;
+  margin: 5px 0;
+  line-height: 1.5;
+  font-size: 80%;
+  font-weight: 500;
+}
+
+.intro a {
+  color: white;
+  background: #0057d8;
+  border: 4px solid #0057d8;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
+.intro a:hover {
+  color: #0057d8;
+  background: transparent;
+}
+
+.favorites h1 {
+  text-align: center;
+}
+
+.favorites ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 100px 100px;
+  padding: 0;
+}
+
+/* hardcoded data */
+.favorites ul li {
+  width: 200px;
+  height: 300px;
+  margin: 20px;
+  background: darkgray;
+}
