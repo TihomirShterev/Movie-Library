@@ -24,7 +24,8 @@ const userSchema = mongoose.Schema(
         },
         message: props => `${props.value} should not contain whitespace characters`
       }
-    }
+    },
+    favorites: [{ type: Object }]
   }
 );
 
