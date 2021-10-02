@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { imageURL } from '../../../config/config';
+import { addToFavorites, removeFromFavorites } from '../../../redux/actions/movieActions';
 import { movieGenres } from '../../../utils/constants';
 import styles from './index.module.css';
 
 const Movie = ({ movie }) => {
+  const userId = useSelector(state => state.login.userInfo?._id);
+  const favorites = useSelector(state => state.favorites);
+  const history = useHistory();
+  const isFavorite = favorites.some(f => f.id === movie.id);
+  const dispatch = useDispatch();
   const { id, title, release_date, poster_path, genre_ids, genres, runtime, overview, homepage } = movie;
   const releaseDate = release_date.substring(0, 4);
   let genresStr;
@@ -14,6 +21,19 @@ const Movie = ({ movie }) => {
   } else {
     genresStr = genres.map(genre => genre.name).join(', ');
   }
+
+  const handleClick = () => {
+    if (userId) {
+      if (isFavorite) {
+        dispatch(removeFromFavorites(userId, movie.id));
+      } else {
+        dispatch(addToFavorites(userId, movie));
+      }
+    } else {
+      history.push('/login');
+    }
+
+  };
 
   return (
     <div className={styles["movie-item"]}>
@@ -30,8 +50,11 @@ const Movie = ({ movie }) => {
         <p>{genresStr}{runtime && ` | ${runtime} minutes`}</p>
         <p>{overview}</p>
         {homepage && <a href={homepage}>Visit official site</a>}
-        <button className={styles["add-btn"]}>Add To Favorites</button>
-        {/* <button className={styles["remove-btn"]}>Remove From Favorites</button> */}
+        {isFavorite ? (
+          <button className={styles["remove-btn"]} onClick={handleClick}>Remove From Favorites</button>
+        ) : (
+          <button className={styles["add-btn"]} onClick={handleClick}>Add To Favorites</button>
+        )}
       </article>
     </div>
   );
